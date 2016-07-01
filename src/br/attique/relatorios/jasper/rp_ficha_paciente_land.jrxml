@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rp_ficha_aluno_land" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4f7bd834-d459-4ada-88a1-14094b952a30">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="PATH_LOGO" class="java.lang.String"/>
+	<parameter name="ID" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["F:\\Dropbox\\NetBeansProjects\\ClinicaGalati\\src\\br\\attique\\relatorios\\jasper\\"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select * from pessoas p join pacientes pa on (p.pes_id = pa.pes_id)
+join enderecos e on (p.endereco_id = e.id) where p.pes_id = $P{ID}]]>
+	</queryString>
+	<field name="pes_id" class="java.lang.Integer"/>
+	<field name="pes_anotacoes" class="java.lang.String"/>
+	<field name="ativo" class="java.lang.Boolean"/>
+	<field name="pes_celular" class="java.lang.String"/>
+	<field name="pes_complemento_endereco" class="java.lang.String"/>
+	<field name="pes_cpf" class="java.lang.String"/>
+	<field name="pes_data_cadastro" class="java.sql.Date"/>
+	<field name="pes_email" class="java.lang.String"/>
+	<field name="pes_foto" class="java.lang.String"/>
+	<field name="pes_nascimento" class="java.sql.Date"/>
+	<field name="pes_nome" class="java.lang.String"/>
+	<field name="pes_numero_endereco" class="java.lang.String"/>
+	<field name="pes_outro" class="java.lang.String"/>
+	<field name="pes_rg" class="java.lang.String"/>
+	<field name="pes_site" class="java.lang.String"/>
+	<field name="pes_telefone" class="java.lang.String"/>
+	<field name="endereco_id" class="java.lang.Integer"/>
+	<field name="pac_indicacao" class="java.lang.String"/>
+	<field name="pac_profissao" class="java.lang.String"/>
+	<field name="id" class="java.lang.Integer"/>
+	<field name="bairro" class="java.lang.String"/>
+	<field name="cep" class="java.lang.String"/>
+	<field name="cidade" class="java.lang.String"/>
+	<field name="logradouro" class="java.lang.String"/>
+	<field name="uf" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="8e19ca03-0948-44b8-98d0-d5888979aa39" x="153" y="0" width="402" height="16"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Monospaced" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Ficha de Paciente]]></text>
+			</staticText>
+			<image onErrorType="Blank">
+				<reportElement uuid="853158b0-dc8c-4d34-81c5-bb2609d9ba2b" x="0" y="0" width="153" height="79"/>
+				<imageExpression><![CDATA[$P{PATH_LOGO}]]></imageExpression>
+			</image>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="4633229a-b354-48de-bf48-2d32f2f28fcd" x="182" y="27" width="41" height="16"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Monospaced" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="08ff2004-324a-45b1-886e-bf8c8ecd1a63" x="153" y="27" width="29" height="16"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Monospaced" size="12"/>
+				</textElement>
+				<text><![CDATA[ID:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="b26ed12b-d22e-4318-92ce-273f863a8769" x="223" y="27" width="53" height="16"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Monospaced" size="12"/>
+				</textElement>
+				<text><![CDATA[Nome:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="ac3d1d3f-aae2-47b6-8a9d-72148ec9a482" x="276" y="27" width="279" height="16"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Monospaced" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pes_nome}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="6426ad3b-97a0-43f6-8774-3862c1b54dc0" x="153" y="43" width="30" height="16"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Monospaced" size="12"/>
+				</textElement>
+				<text><![CDATA[CPF:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="cfa3fe91-3d2d-4f47-890a-224a1d99db80" x="183" y="43" width="193" height="16"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Monospaced" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pes_cpf}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="b5a1780a-c720-404f-9e09-0f477c97b2e3" x="376" y="43" width="26" height="16"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Monospaced" size="12"/>
+				</textElement>
+				<text><![CDATA[RG:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="319880db-be61-4560-990b-904bde9293ff" x="402" y="43" width="153" height="16"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Monospaced" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pes_rg}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<detail>
+		<band height="173" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="e5f5c524-7145-43ee-a405-4cd7c89e0929" x="0" y="4" width="51" height="16"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Monospaced" size="12"/>
+				</textElement>
+				<text><![CDATA[Tel.:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="90c21482-9562-41b9-b56d-85ec5a98cfbc" x="51" y="4" width="131" height="16"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Monospaced" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pes_telefone}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="47551706-5cbf-4668-b646-41f2706ac1c8" x="183" y="4" width="50" height="16"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Monospaced" size="12"/>
+				</textElement>
+				<text><![CDATA[Cel.:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="f1855018-88f5-48c6-86b8-4a5d45665c63" x="233" y="4" width="125" height="16"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Monospaced" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pes_celular}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="c9b0fd05-9800-43dd-8830-9c9906e97411" x="358" y="4" width="44" height="16"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Monospaced" size="12"/>
+				</textElement>
+				<text><![CDATA[Outro:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="8b8b9812-3a72-4b55-847c-478dcab148b3" x="402" y="4" width="153" height="16"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Monospaced" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pes_outro}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="70d50f13-f8c8-48ca-b139-e3ef6b009cba" x="0" y="21" width="51" height="16"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Monospaced" size="12"/>
+				</textElement>
+				<text><![CDATA[Email:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="3af5eb94-4733-4107-9705-75826bf49d17" x="51" y="21" width="131" height="16"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Monospaced" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pes_email}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="5f689b80-1ace-4780-95e1-9939d482e18d" x="183" y="22" width="43" height="16"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Monospaced" size="12"/>
+				</textElement>
+				<text><![CDATA[Site:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="90effa5b-089f-4a9a-b229-d6243470b78f" x="226" y="21" width="166" height="16"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Monospaced" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pes_site}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="049c7bf7-0ab7-4002-a4e9-4bb11656ae3f" x="392" y="21" width="44" height="16"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Monospaced" size="12"/>
+				</textElement>
+				<text><![CDATA[Nasc.:]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement uuid="320acb50-3463-4112-8327-255b4f982896" x="436" y="21" width="119" height="16"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Monospaced" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pes_nascimento}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="009d10e8-cf7c-41a9-ab12-e5415a5f3315" x="0" y="38" width="61" height="16"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Monospaced" size="12"/>
+				</textElement>
+				<text><![CDATA[End.:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="53865c9e-dda0-489f-85df-09bc1e7a0e7c" x="61" y="38" width="282" height="16"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Monospaced" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{logradouro}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="db6ee007-04c1-4e99-8a23-2a33dfc5a1ed" x="343" y="38" width="59" height="16"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Monospaced" size="12"/>
+				</textElement>
+				<text><![CDATA[Número:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="d5569ccd-be6c-4d08-8090-0d76e7694d89" x="402" y="38" width="153" height="16"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Monospaced" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pes_numero_endereco}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="b0a91920-01e8-4ad3-b90a-8a9db80d8383" x="0" y="55" width="51" height="16"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Monospaced" size="12"/>
+				</textElement>
+				<text><![CDATA[Bairro:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="b800dcb4-0b45-48f9-9a52-4270ec8801e5" x="51" y="55" width="182" height="16"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Monospaced" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{bairro}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="f7c1ad07-fcc5-4885-ad77-1a135a692e48" x="233" y="55" width="54" height="16"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Monospaced" size="12"/>
+				</textElement>
+				<text><![CDATA[Cidade:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="8dcccee1-0180-4b46-ab24-6a870027cce2" x="287" y="55" width="203" height="16"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Monospaced" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cidade}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="bcec6957-acb2-49bb-9727-45892febce7e" x="490" y="55" width="24" height="16"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Monospaced" size="12"/>
+				</textElement>
+				<text><![CDATA[UF:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="7b71de22-d58f-47ce-9cf7-4f54846d7f76" x="514" y="55" width="41" height="16"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Monospaced" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{uf}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="c5473f39-20e9-4b16-926d-6786ee23ea8a" x="0" y="71" width="51" height="16"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Monospaced" size="12"/>
+				</textElement>
+				<text><![CDATA[Prof.:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="5adb612b-18bf-411a-bfa7-60cd276520b2" x="51" y="71" width="277" height="16"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Monospaced" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pac_profissao}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="44019a7a-7ec6-4b36-a18e-e92928506d0c" x="437" y="71" width="34" height="16"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Monospaced" size="12"/>
+				</textElement>
+				<text><![CDATA[Ativo:]]></text>
+			</staticText>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement uuid="9ec9e587-9d55-4a54-b074-9d9d5373cdbc" x="471" y="71" width="84" height="16"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Monospaced" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ativo} ? "SIM" : "NÃO"]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement uuid="0486b716-16b1-4d5f-be12-abb5253da4dd" x="0" y="3" width="555" height="1"/>
+			</line>
+			<line>
+				<reportElement uuid="8f45864f-d5e2-490a-997e-7067f9963ce5" x="111" y="95" width="439" height="1"/>
+			</line>
+			<staticText>
+				<reportElement uuid="c55b71fe-c607-4d04-999c-3ad49ce947eb" x="0" y="89" width="100" height="16"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Monospaced" size="12"/>
+				</textElement>
+				<text><![CDATA[Tratamentos]]></text>
+			</staticText>
+		</band>
+	</detail>
+</jasperReport>

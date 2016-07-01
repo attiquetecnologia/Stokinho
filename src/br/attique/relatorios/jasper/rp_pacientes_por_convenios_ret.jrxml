@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="84efa0a7-8b10-46c4-ba4b-297a58b161a2">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT c.NOME,count(t.TRA_ID) as total from CONVENIOS c left join TRATAMENTOS t on (t.CON_ID = c.CON_ID) group by c.NOME;]]>
+	</queryString>
+	<field name="nome" class="java.lang.String"/>
+	<field name="total" class="java.lang.String"/>
+	<variable name="TOTAL_RESULTADOS" class="java.lang.Integer" calculation="Count">
+		<variableExpression><![CDATA[]]></variableExpression>
+	</variable>
+	<title>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="d81d9e15-d237-4072-b5f6-ffc68a1e1231" x="0" y="0" width="555" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Monospaced" size="12"/>
+				</textElement>
+				<text><![CDATA[Pacientes por Convênio]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="16" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="7dc1fe3c-486c-4756-8f57-7865fbff57b8" x="0" y="0" width="100" height="16"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Monospaced"/>
+				</textElement>
+				<text><![CDATA[Palavras Chave:]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="18" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="3a35b861-4368-4615-adf3-5e9ab8a06613" x="0" y="0" width="202" height="17" forecolor="#000000"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font fontName="Monospaced" size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Convênio]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="06387151-aab9-4f23-abd8-62d18f586a35" x="202" y="0" width="217" height="17" forecolor="#000000"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font fontName="Monospaced" size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Total]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="3a8c0129-7811-448b-aa1f-a71c0d0d0889" x="0" y="17" width="555" height="1"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="17" splitType="Stretch">
+			<textField>
+				<reportElement uuid="d64cf1ec-95bf-4b71-b24e-839a0fb0a5dd" x="0" y="0" width="202" height="17"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Monospaced" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="fb06a2b5-e435-45d4-a5f3-96d4ad160f25" x="202" y="0" width="217" height="17"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Monospaced" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{total}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="19">
+			<line>
+				<reportElement uuid="56bec4df-20f4-4dd4-b329-0763b393b8a8" x="0" y="18" width="555" height="1"/>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="15">
+			<textField>
+				<reportElement uuid="57327c9d-07b9-4ee2-afb5-e526f90d49c5" x="0" y="0" width="80" height="15"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font fontName="Monospaced" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Pagina "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement uuid="8665e0a3-2920-438a-9aed-55da38bb9337" x="80" y="0" width="40" height="15"/>
+				<textElement verticalAlignment="Bottom">
+					<font fontName="Monospaced" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="a59a41aa-3cc7-417b-a0fb-f41bd4fc6ad7" x="120" y="0" width="242" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Monospaced" size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Clinica Galati]]></text>
+			</staticText>
+			<textField pattern="dd MMMMM yyyy">
+				<reportElement uuid="418fb0b2-bc5b-4a03-ab9e-925db9561177" x="362" y="0" width="193" height="15"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Monospaced"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<lastPageFooter>
+		<band height="17">
+			<textField>
+				<reportElement uuid="0fd1b662-ce75-4313-9d42-01d867b266b0" x="131" y="0" width="67" height="17"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Monospaced"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{TOTAL_RESULTADOS}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="44f16f8a-0b02-474d-9d34-a22d87d0ab7d" x="0" y="0" width="131" height="17"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Monospaced"/>
+				</textElement>
+				<text><![CDATA[Total de Resultados:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="646cf672-225e-4c73-be46-bda6904886f1" x="198" y="1" width="80" height="15"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font fontName="Monospaced" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Pagina "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement uuid="2c0b9b62-a0f0-4ecc-9ef6-554e1494e2e4" x="278" y="1" width="40" height="15"/>
+				<textElement verticalAlignment="Bottom">
+					<font fontName="Monospaced" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</lastPageFooter>
+</jasperReport>
