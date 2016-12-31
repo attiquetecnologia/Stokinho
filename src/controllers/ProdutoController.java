@@ -7,103 +7,93 @@
  */
 package controllers;
 
+import controllers.EnderecoController;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
-import models.Profissional;
-import models.Profissional;
+import models.Produto;
 import models.enuns.Comparadores;
-import models.interfaces.DefaultController;
-import persistence.ProfissionalBO;
-import persistence.ProfissionalBO;
+import persistence.ProdutoBO;
 import utils.Log;
-import utils.ShowMessage;
 
 /**
  *
  * @author Rodrigo
  */
-public class ProfissionalController implements DefaultController {
-    private Profissional profissional;
-    private ProfissionalBO pbo;
+public class ProdutoController{
+    private Produto produto;
+    private ProdutoBO pbo;
 
-    public ProfissionalController() {
-        pbo = new ProfissionalBO();
+    public ProdutoController() {
+        pbo = new ProdutoBO();
     }
 
     
-    public ProfissionalController(Profissional profissional) {
-        this.profissional = profissional;
-        pbo = new ProfissionalBO();
+    public ProdutoController(Produto produto) {
+        this.produto = produto;
+        pbo = new ProdutoBO();
     }
 
     
-    public Profissional getProfissional() {
-        return profissional;
+    public Produto getProduto() {
+        return produto;
     }
 
-    public void setProfissional(Profissional profissional) {
-        this.profissional = profissional;
+    public void setProduto(Produto produto) {
+        this.produto = produto;
     }
 
-    @Override
-    public boolean setObject(Object[] o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
-    @Override
+//    @Override
     public boolean setObject(Object object) {
         try {
-            this.profissional = (Profissional) object;
+            this.produto = (Produto) object;
             return true;
         } catch(Exception ex){
-            Log.log(ProfissionalController.class.getName(), ex);
+            Log.log(ProdutoController.class.getName(), ex);
         }
         return false;
     }//fim 
 
-    @Override
-    public Object[][] objectToArray(Collection c) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    
 
-    @Override
+//    @Override
     public boolean save() {
         try {
-            return pbo.save(profissional);
+            return pbo.save(produto);
         } catch (Exception ex) {
             Log.log(EnderecoController.class.getName(), ex);
         }
         return false;
     }
 
-    @Override
+//    @Override
     public boolean update() {
         try {
-            return pbo.update(profissional);
+            return pbo.update(produto);
             
         } catch (Exception ex){
-            ShowMessage.errorMessage("Problemas ao salvar o registro!");
             Log.log(EnderecoController.class.getName(), ex);
         }
         return false;
     }
 
-    @Override
+//    @Override
     public boolean delete() {
         try {
-            return pbo.delete(profissional);
+            return pbo.delete(produto);
+            
         } catch (Exception ex){
-            ShowMessage.errorMessage("Problemas ao apagar o registro!");
-            Log.log(PessoaController.class.getName(), ex);
+            Log.log(EnderecoController.class.getName(), ex);
         }
         return false;
     }
 
-    public List findByParameters(String param, Object value, Comparadores comp) {
-    /*
+    public List<Produto> findByParameters(String param, Object value, Comparadores comp) {
+        /*
         1.Fazer cast do valor do textFile
         2.usar comparador selecionado
         3.Consultar pelo campo escolhido acima
@@ -114,18 +104,18 @@ public class ProfissionalController implements DefaultController {
             em = pbo.getEntityManager();
             switch(param){
                 case "nome":
-                    consulta = em.createNamedQuery("Profissional.findByNome", Profissional.class).setParameter("nome", "%"+value+"%");
+                    consulta = em.createNamedQuery("Produto.findByNome", Produto.class).setParameter("nome", "%"+value+"%");
                     break;
                 case "email":
-                    consulta = em.createNamedQuery("Profissional.findByEmail", Profissional.class).setParameter("email", "%"+value+"%");
+                    consulta = em.createNamedQuery("Produto.findByEmail", Produto.class).setParameter("email", "%"+value+"%");
                     break;
                 default: 
-                    em.createNamedQuery("Profissional.findAll");
+                    em.createNamedQuery("Produto.findAll");
                     break;
             }//fim switch param
             return consulta.getResultList();
         } catch (Exception ex) {
-            Log.log(ProfissionalBO.class.getName(), ex);
+            Log.log(ProdutoBO.class.getName(), ex);
         } finally {
             if (em != null) {
                 em.close();
@@ -146,13 +136,13 @@ public class ProfissionalController implements DefaultController {
             em = pbo.getEntityManager();
             switch(param){
                 case "nome":
-                    consulta = em.createNamedQuery("Profissional.findByNome", Profissional.class).setParameter("nome", "%"+value+"%");
+                    consulta = em.createNamedQuery("Produto.findByNome", Produto.class).setParameter("nome", "%"+value+"%");
                     break;
                 case "email":
-                    consulta = em.createNamedQuery("Profissional.findByEmail", Profissional.class).setParameter("nome", "%"+value+"%");
+                    consulta = em.createNamedQuery("Produto.findByEmail", Produto.class).setParameter("nome", "%"+value+"%");
                     break;
                 default: 
-                    em.createNamedQuery("Profissional.findAll");
+                    em.createNamedQuery("Produto.findAll");
                     break;
             }//fim switch param
             List resultList = consulta.getResultList();
@@ -160,7 +150,7 @@ public class ProfissionalController implements DefaultController {
                 return resultList.get(0);
             }
         } catch (Exception ex) {
-            Log.log(ProfissionalBO.class.getName(), ex);
+            Log.log(ProdutoBO.class.getName(), ex);
         } finally {
             if (em != null) {
                 em.close();
@@ -169,18 +159,9 @@ public class ProfissionalController implements DefaultController {
         return null;
     }
 
-    @Override
-    public Object findById(Object id) {
-        try {
-            return pbo.findById(id);
-        } catch (Exception ex) {
-            Log.log(ProfissionalBO.class.getName(), ex);
-        }
-        return null;
-    }
-
-    @Override
-    public List<Profissional> findByParameters(String query, Object... params) {
+        
+//    @Override
+    public List<Produto> findByParameters(String query, Object... params) {
         /*
         1.Fazer cast do valor do textFile
         2.usar comparador selecionado
@@ -190,14 +171,14 @@ public class ProfissionalController implements DefaultController {
         Query consulta = null;
         try {
             em = pbo.getEntityManager();
-            consulta = em.createQuery(query, Profissional.class);
+            consulta = em.createQuery(query, Produto.class);
             for (int i=0;i<params.length;i++){
                 consulta.setParameter(i+1, params[i]);
             }
             
             return consulta.getResultList();
         } catch (Exception ex) {
-            Log.log(ProfissionalBO.class.getName(), ex);
+            Log.log(ProdutoBO.class.getName(), ex);
         } finally {
             if (em != null) {
                 em.close();
@@ -206,32 +187,33 @@ public class ProfissionalController implements DefaultController {
         return new ArrayList();
     }
 
-    @Override
+//    @Override
     public boolean findParameters(Object object, String query, Object... params) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public List<Profissional> findAll() {
-        /*
-        1.Fazer cast do valor do textFile
-        2.usar comparador selecionado
-        3.Consultar pelo campo escolhido acima
-        */
-        EntityManager em = null;
-        Query consulta = null;
+//    @Override
+    public Object findById(Object id) {
         try {
-            em = pbo.getEntityManager();
-            consulta = em.createNamedQuery("Profissional.findAll", Profissional.class);
-            
-            return consulta.getResultList();
+            return pbo.findById(id);
         } catch (Exception ex) {
-            Log.log(ProfissionalBO.class.getName(), ex);
-        } finally {
-            if (em != null) {
-                em.close();
-            }
-        }//fim finally
-        return new ArrayList();
+            Log.log(ProdutoBO.class.getName(), ex);
+        }
+        return null;
     }
 
+    /** Esta função faz update no estoque para mais e para menos
+     * 
+     */
+    public boolean baixaEstoque(Produto produto, int quantidade){
+        try {
+            //resgata o produto no banco
+            produto = (Produto) pbo.findById(produto.getId());
+            pbo.update(produto);
+        } catch (Exception ex) {
+            Log.log(ProdutoController.class.getName(), ex);
+        }
+        return false;
+    }
+    
 }//fim classe

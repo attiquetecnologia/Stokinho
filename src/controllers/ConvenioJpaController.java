@@ -16,7 +16,7 @@ import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import models.Convenio;
+import models.Servico;
 
 /**
  *
@@ -33,7 +33,7 @@ public class ConvenioJpaController implements Serializable {
         return emf.createEntityManager();
     }
 
-    public void create(Convenio convenio) {
+    public void create(Servico convenio) {
         EntityManager em = null;
         try {
             em = getEntityManager();
@@ -47,7 +47,7 @@ public class ConvenioJpaController implements Serializable {
         }
     }
 
-    public void edit(Convenio convenio) throws NonexistentEntityException, Exception {
+    public void edit(Servico convenio) throws NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
@@ -75,9 +75,9 @@ public class ConvenioJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Convenio convenio;
+            Servico convenio;
             try {
-                convenio = em.getReference(Convenio.class, id);
+                convenio = em.getReference(Servico.class, id);
                 convenio.getId();
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The convenio with id " + id + " no longer exists.", enfe);
@@ -91,19 +91,19 @@ public class ConvenioJpaController implements Serializable {
         }
     }
 
-    public List<Convenio> findConvenioEntities() {
+    public List<Servico> findConvenioEntities() {
         return findConvenioEntities(true, -1, -1);
     }
 
-    public List<Convenio> findConvenioEntities(int maxResults, int firstResult) {
+    public List<Servico> findConvenioEntities(int maxResults, int firstResult) {
         return findConvenioEntities(false, maxResults, firstResult);
     }
 
-    private List<Convenio> findConvenioEntities(boolean all, int maxResults, int firstResult) {
+    private List<Servico> findConvenioEntities(boolean all, int maxResults, int firstResult) {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            cq.select(cq.from(Convenio.class));
+            cq.select(cq.from(Servico.class));
             Query q = em.createQuery(cq);
             
             if (!all) {
@@ -116,10 +116,10 @@ public class ConvenioJpaController implements Serializable {
         }
     }
 
-    public Convenio findConvenio(int id) {
+    public Servico findConvenio(int id) {
         EntityManager em = getEntityManager();
         try {
-            return em.find(Convenio.class, id);
+            return em.find(Servico.class, id);
         } finally {
             em.close();
         }
@@ -129,7 +129,7 @@ public class ConvenioJpaController implements Serializable {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            Root<Convenio> rt = cq.from(Convenio.class);
+            Root<Servico> rt = cq.from(Servico.class);
             cq.select(em.getCriteriaBuilder().count(rt));
             Query q = em.createQuery(cq);
             return ((Long) q.getSingleResult()).intValue();

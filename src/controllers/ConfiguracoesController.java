@@ -8,18 +8,10 @@
 package controllers;
 
 import models.Configuracoes;
-import models.Endereco;
 import persistence.ConfiguracoesBO;
-import persistence.LogAcaoDAO;
-import java.math.BigDecimal;
-import java.sql.CallableStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import models.interfaces.DefaultController;
